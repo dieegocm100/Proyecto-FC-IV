@@ -5,7 +5,22 @@ import numpy as np
 from typing import Callable
 
 def rk4_method(f: Callable[[float, float], float], t0: float, y0: float, h: float, tf: float) -> tuple[np.ndarray, np.ndarray]:
-    """Método de Runge-Kutta de 4to orden (RK4) para EDOs de primer orden."""
+    """
+    Método de Runge-Kutta de cuarto orden (RK4) para resolver ecuaciones diferenciales ordinarias (EDOs) de primer orden.
+
+    Args:
+        f (Callable[[float, float], float]): Función f(t, y) que define la EDO dy/dt = f(t, y).
+                                             Debe aceptar dos flotantes y devolver la derivada.
+        t0 (float): Valor inicial de la variable independiente
+        y0 (float): Valor inicial de la variable dependiente (condición inicial).
+        h (float): Tamaño del paso de integración
+        tf (float): Valor final de la variable independiente
+
+    Returns:
+        tuple[np.ndarray, np.ndarray]: Una tupla (t, y) que contiene:
+            - t (np.ndarray): Arreglo de valores discretos de la variable independiente.
+            - y (np.ndarray): Valores aproximados de la variable dependiente calculados en cada t.
+    """
 
     # variables independientes
     t = np.arange(start=t0, stop=tf + h, step=h, dtype=float)
