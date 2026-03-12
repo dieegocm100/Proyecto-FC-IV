@@ -6,7 +6,7 @@ from typing import Callable
 
 def rk4_method(f: Callable[[float, float], float], t0: float, y0: float, h: float, tf: float) -> tuple[np.ndarray, np.ndarray]:
     """
-    Método de Runge-Kutta de cuarto orden (RK4) para resolver ecuaciones diferenciales ordinarias (EDOs) de primer orden.
+    Método RK4 para resolver EDOs de primer orden.
 
     Args:
         f (Callable[[float, float], float]): Función f(t, y) que define la EDO dy/dt = f(t, y).
