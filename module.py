@@ -27,7 +27,6 @@ def rk4_method(f: Callable[[float, float], float], t0: float, y0: float, h: floa
     y = np.zeros_like(t, dtype=float)
 
     # Nos aseguramos de que y0 sea un número, no una lista
-
     if isinstance(y0, (list, np.ndarray)):
         y[0] = y0[0]
     else:
