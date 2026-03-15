@@ -1,12 +1,12 @@
 """
-modulo dónde irá rk4 y rk45 respectivamente
+modulo dónde irá rk4
 """
 import numpy as np
 from typing import Callable
 
 def rk4_method(f: Callable[[float, float], float], t0: float, y0: float, h: float, tf: float) -> tuple[np.ndarray, np.ndarray]:
     """
-    Método RK4 para resolver EDOs de primer orden.
+    Método de Runge-Kutta de cuarto orden (RK4) para resolver ecuaciones diferenciales ordinarias (EDOs) de primer orden.
 
     Args:
         f (Callable[[float, float], float]): Función f(t, y) que define la EDO dy/dt = f(t, y).
@@ -26,8 +26,12 @@ def rk4_method(f: Callable[[float, float], float], t0: float, y0: float, h: floa
     t = np.arange(start=t0, stop=tf + h, step=h, dtype=float)
     y = np.zeros_like(t, dtype=float)
 
-    # Condición inicial
-    y[0] = y0
+    # Nos aseguramos de que y0 sea un número, no una lista
+
+    if isinstance(y0, (list, np.ndarray)):
+        y[0] = y0[0]
+    else:
+        y[0] = y0
 
     for n in range(len(t) - 1):
         tn = t[n]
@@ -41,6 +45,3 @@ def rk4_method(f: Callable[[float, float], float], t0: float, y0: float, h: floa
         y[n+1] = yn + (1/6) * (k1 + 2*k2 + 2*k3 + k4)
 
     return t, y
-
-def rk45_method(f: Callable[[float, float], float], t0: float, y0: float, h: float, tf: float) -> tuple[np.ndarray, np.ndarray]:
-    pass
